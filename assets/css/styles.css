@@ -108,9 +108,8 @@
   height: 100vh;
   width: 280px;
   overflow: hidden;
-  background: #303641;
+  background: linear-gradient(to right, #4b0082 0%, #2b1055 100%);
   box-shadow: 2px 0 32px rgba(0, 0, 0, 0.05);
-  -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
 
@@ -122,28 +121,35 @@
   height: calc(100% - 100px);
   overflow: hidden;
   padding: 20px 10px 0 0;
-  -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
 
 .menu-inner {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
+  padding-right: 10px;
 }
 
-.slimScrollBar {
-  background: #fff !important;
-  opacity: 0.1 !important;
+.menu-inner::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu-inner::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 3px;
+  opacity: 0.1;
 }
 
 .sidebar-header {
   padding: 19px 32px 20px;
-  background: #303641;
-  border-bottom: 1px solid #343e50;
+  background: linear-gradient(to right, #4b0082 0%, #2b1055 100%);
+  border-bottom: 1px solid #503436;
 }
+
 .sidebar-menu .logo {
   text-align: center;
 }
+
 .logo a {
   display: inline-block;
   max-width: 120px;
@@ -152,29 +158,31 @@
 .metismenu > li > a {
   padding-left: 32px !important;
 }
+
 .metismenu li a {
   position: relative;
   display: block;
-  color: #8d97ad;
+  color: #bbb5b5;
   font-size: 15px;
   text-transform: capitalize;
   padding: 15px 15px;
   letter-spacing: 0;
   font-weight: 400;
+  transition: all 0.3s ease 0s;
 }
 
 .metismenu li a i {
   color: #6a56a5;
-  -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
 
 .metismenu li a:after {
   position: absolute;
   content: "\f107";
-  font-family: fontawesome;
+  font-family: "FontAwesome";
   right: 15px;
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #8d97ad;
   font-size: 20px;
 }
@@ -207,7 +215,7 @@
 .metismenu > li:hover > a,
 .metismenu > li.active > a {
   color: #fff;
-  background: #343942;
+  background: #6b5252;
 }
 
 .metismenu li:hover > a,
@@ -221,7 +229,8 @@
 }
 
 .metismenu li li a:after {
-  top: 6px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /*-------------------- END Sidebar Menu -------------------*/
@@ -705,17 +714,11 @@ ul.breadcrumbs {
 
 .user-profile {
   margin-right: -30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  background: -webkit-linear-gradient(left, #4b0082 0%, #2b1055 100%);
   background: linear-gradient(to right, #4b0082 0%, #2b1055 100%);
-  padding: 17px 38px;
+  padding: 10px 20px; /* Reduced padding */
   position: relative;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -1819,6 +1822,7 @@ table.dbkit-table tr td {
 
 .btn-sm {
   padding: 9px 14px;
+  background: linear-gradient(to right, #4b0082 0%, #2b1055 100%);
 }
 
 .btn-xs {
@@ -2165,7 +2169,7 @@ table.dataTable thead td {
 /* datatable-dark */
 
 .datatable-dark thead {
-  background: #444;
+  background: linear-gradient(to right, #4b0082 0%, #2b1055 100%);  
   color: #fff;
 }
 
