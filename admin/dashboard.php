@@ -36,23 +36,23 @@ $breadcrumb = "Dashboard";
     <!-- Modernizr JS -->
     <script src="../assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const gradients = [
-      "linear-gradient(135deg, #7dd5fa, #baf1e4)",
-      "linear-gradient(135deg, #f093fb, #f5576c)",
-      "linear-gradient(135deg, #5ee7df, #b490ca)",
-      "linear-gradient(135deg, #f9d423, #ff4e50)",
-      "linear-gradient(135deg, #1e3c72, #2a5298)"
-    ];
+        document.addEventListener("DOMContentLoaded", function() {
+            const gradients = [
+                "linear-gradient(135deg, #7dd5fa, #baf1e4)",
+                "linear-gradient(135deg, #f093fb, #f5576c)",
+                "linear-gradient(135deg, #5ee7df, #b490ca)",
+                "linear-gradient(135deg, #f9d423, #ff4e50)",
+                "linear-gradient(135deg, #1e3c72, #2a5298)"
+            ];
 
-    const cards = document.querySelectorAll('.single-report');
+            const cards = document.querySelectorAll('.single-report');
 
-    cards.forEach(card => {
-      const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
-      card.style.background = randomGradient;
-    });
-  });
-</script>
+            cards.forEach(card => {
+                const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+                card.style.background = randomGradient;
+            });
+        });
+    </script>
 
 </head>
 
@@ -83,37 +83,37 @@ $breadcrumb = "Dashboard";
 
             <div class="main-content-inner">
                 <div class="sales-report-area mt-5 mb-5">
-<div class="row">
-<div class="col-md-3">
-  <div class="single-report">
-    <div class="s-report-inner">
-      <div class="icon"><i class="fa fa-users"></i></div>
-      <div class="s-report-title">
-        <h4 class="header-title mb-0">Registered Employees</h4>
-      </div>
-      <div>
-        <h1><?php include 'dashboard/employee_count.php'; ?></h1>
-        <span>Active Employees</span>
-      </div>
-    </div>
-  </div>
-</div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="single-report">
+                                <div class="s-report-inner">
+                                    <div class="icon"><i class="fa fa-users"></i></div>
+                                    <div class="s-report-title">
+                                        <h4 class="header-title mb-0">Registered Employees</h4>
+                                    </div>
+                                    <div>
+                                        <h1><?php include 'dashboard/employee_count.php'; ?></h1>
+                                        <span>Active Employees</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<div class="col-md-3">
-  <div class="single-report">
-    <div class="s-report-inner">
-      <div class="icon"><i class="fa fa-users"></i></div>
-      <div class="s-report-title">
-        <h4 class="header-title mb-0">Registered Employees</h4>
-      </div>
-      <div>
-        <h1><?php include 'dashboard/employee_count.php'; ?></h1>
-        <span>Active Employees</span>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+                        <div class="col-md-3">
+                            <div class="single-report">
+                                <div class="s-report-inner">
+                                    <div class="icon"><i class="fa fa-users"></i></div>
+                                    <div class="s-report-title">
+                                        <h4 class="header-title mb-0">Registered Employees</h4>
+                                    </div>
+                                    <div>
+                                        <h1><?php include 'dashboard/employee_count.php'; ?></h1>
+                                        <span>Active Employees</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

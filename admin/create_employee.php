@@ -49,7 +49,7 @@ if (isset($_POST['add_employee'])) {
     $query->bindParam(':regdate', $regdate, PDO::PARAM_STR);
 
     if ($query->execute()) {
-        $_SESSION['msg'] = "Record has been added successfully";
+        $_SESSION['msg'] = "Employee has been added successfully";
         header('location: create_employee.php');
         exit();
     } else {
@@ -179,7 +179,7 @@ if (isset($_POST['add_employee'])) {
 
                                             <div class="form-group">
                                                 <label for="example-text-input" class="col-form-label">Employee ID</label>
-                                                <input class="form-control" name="empcode" type="text" autocomplete="off" required id="empcode" onBlur="checkAvailabilityEmpid()">
+                                                <input class="form-control" name="                                                                                                      " type="text" autocomplete="off" required id="empcode" onBlur="checkAvailabilityEmpid()">
                                             </div>
 
                                             <div class="form-group">

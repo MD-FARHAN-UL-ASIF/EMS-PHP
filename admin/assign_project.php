@@ -65,7 +65,7 @@ if (isset($_POST['add_project'])) {
  
             if ($query->execute()) {
                 $_SESSION['msg'] = "Project has been added successfully";
-                header('location: create_project.php');
+                header('location: project.php');
                 exit();
             } else {
                 $_SESSION['error'] = "ERROR: Could not add project. Please try again.";
