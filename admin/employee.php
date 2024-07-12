@@ -10,7 +10,7 @@ if (empty($_SESSION['admin_login'])) {
 $page_title = "Manage Employee";
 $breadcrumb = "Manage Employee";
 
-//Inactive  Employee    
+//Inactive Employee    
 if (isset($_GET['inid'])) {
     $id = $_GET['inid'];
     $status = 0;
@@ -30,6 +30,16 @@ if (isset($_GET['id'])) {
     $query = $dbh->prepare($sql);
     $query->bindParam(':id', $id, PDO::PARAM_STR);
     $query->bindParam(':status', $status, PDO::PARAM_STR);
+    $query->execute();
+    header('location:employee.php');
+}
+
+//Delete Employee
+if (isset($_GET['delid'])) {
+    $id = $_GET['delid'];
+    $sql = "DELETE FROM employees WHERE id=:id";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':id', $id, PDO::PARAM_STR);
     $query->execute();
     header('location:employee.php');
 }
@@ -113,18 +123,18 @@ if (isset($_GET['id'])) {
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th>Employe ID</th>
+                                            <th>Employee ID</th>
                                             <th>Email</th>
                                             <th>Department</th>
                                             <th>Joined On</th>
                                             <th>Status</th>
-                                            <th></th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         <?php
-                                        $sql = "SELECT EmpId,FirstName,LastName,Email,Department,Status,RegDate,id from  employees";
+                                        $sql = "SELECT EmpId,FirstName,LastName,Email,Department,Status,RegDate,id from employees";
                                         $query = $dbh->prepare($sql);
                                         $query->execute();
                                         $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -154,13 +164,14 @@ if (isset($_GET['id'])) {
 
 
                                                     </td>
-                                                    <td><a href="update-employee.php?empid=<?php echo htmlentities($result->id); ?>"><i class="fa fa-edit" style="color:green"></i></a>
+                                                    <td>
+                                                        <a href="update_employee.php?empid=<?php echo htmlentities($result->id); ?>" class="btn btn-sm btn-primary" title="Edit"><i class="fa fa-edit"></i></a>
+                                                        <a href="employee.php?delid=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to delete this employee?');" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
                                                         <?php if ($result->Status == 1) { ?>
-                                                            <a href="employees.php?inid=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to inactive this employee?');"" > <i class=" fa fa-times-circle" style="color:red" title="Inactive"></i>
-                                                            <?php } else { ?>
-
-                                                                <a href="employees.php?id=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to active this employee?');""><i class=" fa fa-check" style="color:green" title="Active"></i>
-                                                                <?php } ?>
+                                                            <a href="employee.php?inid=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to deactivate this employee?');" class="btn btn-sm btn-warning" title="Deactivate"><i class="fa fa-times-circle"></i></a>
+                                                        <?php } else { ?>
+                                                            <a href="employee.php?id=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to activate this employee?');" class="btn btn-sm btn-success" title="Activate"><i class="fa fa-check"></i></a>
+                                                        <?php } ?>
                                                     </td>
                                                 </tr>
                                         <?php $cnt++;

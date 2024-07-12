@@ -17,8 +17,16 @@
             </ul>
             
         </li>
+        <li class="<?php if($page=='manage-project') {echo 'active';} ?>">
+            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-briefcase"></i><span>Manage Project</span></a>
 
-        <li class="<?php if($page=='manage-admin') {echo 'active';} ?>"><a href="manage-admin.php"><i class="fa fa-lock"></i> <span>Manage Admin</span></a></li>
-                            
+            <ul class="collapse">
+                <li ><a href="assign_project.php"><i class="fa fa-plus"></i> Assign Project</a></li>
+                <!-- <li ><a href="approved_leave.php"><i class="fa fa-check"></i> Approved</a></li>
+                <li ><a href="declined_leave.php"><i class="fa fa-times-circle"></i> Declined</a></li> -->
+                <li ><a href="project.php"><i class="fa fa-history"></i> All Project</a></li>
+            </ul>
+            
+        </li>                            
     </ul>
 </nav>

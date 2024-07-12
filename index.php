@@ -2,7 +2,9 @@
 session_start();
 include('includes/db_connection.php');
 
-if(isset($_POST['signin'])) {
+$msg = ''; // Initialize $msg
+
+if (isset($_POST['signin'])) {
     $uname = $_POST['username'];
     $password = md5($_POST['password']);  
 
@@ -16,7 +18,7 @@ if(isset($_POST['signin'])) {
 
         if ($result) {
             if ($result->Status == 0) {
-                $msg = "Your account is currently In-Active. Contact your administrator!";
+                $msg = "Your account is currently inactive. Please contact your administrator.";
             } else {
                 $_SESSION['employee_login'] = $uname;
                 $_SESSION['eid'] = $result->id;
@@ -24,10 +26,10 @@ if(isset($_POST['signin'])) {
                 exit;
             }
         } else {
-            echo "<script>alert('Sorry, Invalid Details.');</script>";
+            $msg = "Invalid email or password. Please try again.";
         }
     } catch (PDOException $e) {
-        echo "<script>alert('Database error: " . $e->getMessage() . "');</script>";
+        $msg = "A database error occurred: " . $e->getMessage();
     }
 }
 ?>
@@ -51,9 +53,9 @@ if(isset($_POST['signin'])) {
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="../assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-    <link rel="stylesheet" href="assets/css/responsive.css">
     <div id="preloader">
         <div class="loader"></div>
     </div>
@@ -65,9 +67,13 @@ if(isset($_POST['signin'])) {
                     <div class="login-form-head">
                         <h4>Employee Login</h4>
                         <p>EMS</p>
-                        <?php if(isset($msg)){?><div class="errorWrap"><strong>Error</strong> : <?php echo htmlentities($msg); ?> </div><?php }?>
                     </div>
                     <div class="login-form-body">
+                        <?php if ($msg) { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Error:</strong> <?php echo htmlentities($msg); ?>
+                            </div>
+                        <?php } ?>
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" id="username" name="username" autocomplete="off" required>
@@ -113,5 +119,5 @@ if(isset($_POST['signin'])) {
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js"></script>
 </body>
-
 </html>
+                            
