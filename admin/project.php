@@ -41,6 +41,7 @@ $breadcrumb = "Project Management";
         .status-not-submitted {
             color: red;
         }
+
         .status-submitted {
             color: green;
         }
@@ -109,7 +110,7 @@ $breadcrumb = "Project Management";
                                                 $cnt = 1;
                                                 if ($query->rowCount() > 0) {
                                                     foreach ($results as $result) {
-                                                        ?>
+                                                ?>
                                                         <tr>
                                                             <td><b><?php echo htmlentities($cnt); ?></b></td>
                                                             <td><?php echo htmlentities($result->FirstName . " " . $result->LastName); ?></td>
@@ -118,29 +119,34 @@ $breadcrumb = "Project Management";
                                                             <td><?php echo htmlentities($result->starting_date); ?></td>
                                                             <td><?php echo htmlentities($result->closing_date); ?></td>
                                                             <td>
-    <?php  {
-        $document_path = '../' . $result->documents; // Adjust path as needed
+    <?php 
+    if ($result->documents !== null) {
+        $document_path = '/EMS-PHP/' . $result->documents; // Ensure the path is correct and includes the project directory
         echo '<a href="' . $document_path . '" target="_blank">View Document</a>';
-    } ?>
+    } else {
+        echo 'Document Not Available';
+    }
+    ?>
 </td>
+
 
                                                             <td class="<?php echo ($result->status == 0) ? 'status-not-submitted' : 'status-submitted'; ?>">
                                                                 <?php echo ($result->status == 0) ? 'Not Submitted' : 'Submitted'; ?>
                                                             </td>
                                                             <td>
-    <?php echo $result->submission_date !== null ? htmlentities($result->submission_date) : 'Not submitted'; ?>
-</td>
+                                                                <?php echo $result->submission_date !== null ? htmlentities($result->submission_date) : 'Not submitted'; ?>
+                                                            </td>
 
-<td>
-    <?php
-    if ($result->status == 1 && $result->submitted_documents !== null) {
-        $submitted_document_path = '../' . $result->submitted_documents; // Adjust path as needed
-        echo '<a href="' . $submitted_document_path . '" target="_blank">View Submitted Document</a>';
-    } else{
-        echo 'Document Not Submitted';
-    }
-    ?>
-</td>
+                                                            <td>
+                                                                <?php
+                                                                if ($result->status == 1 && $result->submitted_documents !== null) {
+                                                                    $submitted_document_path = '../' . $result->submitted_documents; // Adjust path as needed
+                                                                    echo '<a href="' . $submitted_document_path . '" target="_blank">View Submitted Document</a>';
+                                                                } else {
+                                                                    echo 'Document Not Submitted';
+                                                                }
+                                                                ?>
+                                                            </td>
 
                                                         </tr>
                                                 <?php
