@@ -19,7 +19,7 @@ if (isset($_GET['inid'])) {
     $query->bindParam(':id', $id, PDO::PARAM_STR);
     $query->bindParam(':status', $status, PDO::PARAM_STR);
     $query->execute();
-    header('location:employees.php');
+    header('location:employee.php');
 }
 
 //Activated Employee
@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
     $query->bindParam(':id', $id, PDO::PARAM_STR);
     $query->bindParam(':status', $status, PDO::PARAM_STR);
     $query->execute();
-    header('location:employees.php');
+    header('location:employee.php');
 }
 ?>
 <!DOCTYPE html>

@@ -7,6 +7,7 @@ if (empty($_SESSION['admin_login'])) {
     header('location: login.php');
     exit(); // Add exit to stop further execution
 }
+
 $page_title = "Add Employee";
 $breadcrumb = "Add Employee";
 
@@ -22,7 +23,7 @@ if (isset($_POST['add_employee'])) {
     $department = filter_input(INPUT_POST, 'department', FILTER_SANITIZE_SPECIAL_CHARS);
     $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS);
     $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_SPECIAL_CHARS);
-    $mobileno = filter_input(INPUT_POST, 'mobileno', FILTER_SANITIZE_SPECIAL_CHARS);
+    $mobile = filter_input(INPUT_POST, 'mobile', FILTER_SANITIZE_SPECIAL_CHARS);
     $status = 1;
     $regdate = date('Y-m-d H:i:s'); // Current date and time for RegDate
 
@@ -31,7 +32,7 @@ if (isset($_POST['add_employee'])) {
 
     // Insert data into database
     $sql = "INSERT INTO employees (EmpId, FirstName, LastName, Email, Password, Gender, Dob, Department, Address, City, Phone, Status, RegDate)
-      VALUES (:empid, :fname, :lname, :email, :password, :gender, :dob, :department, :address, :city, :mobileno, :status, :regdate)";
+            VALUES (:empid, :fname, :lname, :email, :password, :gender, :dob, :department, :address, :city, :mobile, :status, :regdate)";
     $query = $dbh->prepare($sql);
     $query->bindParam(':empid', $empid, PDO::PARAM_STR);
     $query->bindParam(':fname', $fname, PDO::PARAM_STR);
@@ -43,16 +44,18 @@ if (isset($_POST['add_employee'])) {
     $query->bindParam(':department', $department, PDO::PARAM_STR);
     $query->bindParam(':address', $address, PDO::PARAM_STR);
     $query->bindParam(':city', $city, PDO::PARAM_STR);
-    $query->bindParam(':mobileno', $mobileno, PDO::PARAM_STR);
+    $query->bindParam(':mobile', $mobile, PDO::PARAM_STR);
     $query->bindParam(':status', $status, PDO::PARAM_INT);
     $query->bindParam(':regdate', $regdate, PDO::PARAM_STR);
-    $query->execute();
 
-    $lastInsertId = $dbh->lastInsertId();
-    if ($lastInsertId) {
-        $msg = "Record has been added Successfully";
+    if ($query->execute()) {
+        $_SESSION['msg'] = "Record has been added successfully";
+        header('location: create_employee.php');
+        exit();
     } else {
-        $error = "ERROR: Could not add record. Please try again.";
+        $_SESSION['error'] = "ERROR: Could not add record. Please try again.";
+        header('location: create_employee.php');
+        exit();
     }
 }
 ?>
@@ -61,7 +64,7 @@ if (isset($_POST['add_employee'])) {
 <head>
 <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Admin Panel - Employee Leave</title>
+    <title>Admin Dashboard - EMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="../assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
@@ -81,11 +84,11 @@ if (isset($_POST['add_employee'])) {
     <script src="../assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript">
         function valid() {
-            if(document.addemp.password.value != document.addemp.confirmpassword.value) {
-                alert("New Password and Confirm Password Field do not match  !!");
+            if (document.addemp.password.value != document.addemp.confirmpassword.value) {
+                alert("New Password and Confirm Password Field do not match!");
                 document.addemp.confirmpassword.focus();
                 return false;
-            } 
+            }
             return true;
         }
     </script>
@@ -94,13 +97,13 @@ if (isset($_POST['add_employee'])) {
             $("#loaderIcon").show();
             jQuery.ajax({
                 url: "check_availability.php",
-                data: 'empcode='+$("#empcode").val(),
+                data: 'empcode=' + $("#empcode").val(),
                 type: "POST",
-                success:function(data){
+                success: function (data) {
                     $("#empid-availability").html(data);
                     $("#loaderIcon").hide();
                 },
-                error:function (){}
+                error: function () { }
             });
         }
     </script>
@@ -109,13 +112,13 @@ if (isset($_POST['add_employee'])) {
             $("#loaderIcon").show();
             jQuery.ajax({
                 url: "check_availability.php",
-                data: 'emailid='+$("#email").val(),
+                data: 'emailid=' + $("#email").val(),
                 type: "POST",
-                success:function(data){
+                success: function (data) {
                     $("#emailid-availability").html(data);
                     $("#loaderIcon").hide();
                 },
-                error:function (){}
+                error: function () { }
             });
         }
     </script>
@@ -142,47 +145,133 @@ if (isset($_POST['add_employee'])) {
             </div>
         </div>
 
-
         <div class="main-content">
             <?php include '../admin/layout/header.php' ?>
+            <div class="main-content-inner">
+                <!-- row area start -->
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-6 col-ml-12">
+                        <div class="row justify-content-center align-items-center">
+                            <!-- Input form start -->
+                            <div class="col-12 mt-5">
+                                <?php if (isset($_SESSION['error'])) { ?>
+                                    <div class="alert alert-danger alert-dismissible fade show">
+                                        <strong>Info: </strong><?php echo htmlentities($_SESSION['error']); ?>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <?php unset($_SESSION['error']); ?>
+                                <?php } else if (isset($_SESSION['msg'])) { ?>
+                                    <div class="alert alert-success alert-dismissible fade show">
+                                        <strong>Info: </strong><?php echo htmlentities($_SESSION['msg']); ?>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <?php unset($_SESSION['msg']); ?>
+                                <?php } ?>
+                                <div class="card">
+                                    <form name="addemp" method="POST">
 
-            
-            <?php include '../admin/layout/footer.php' ?>
+                                        <div class="card-body">
+                                            <p class="text-muted font-14 mb-4">Please fill up the form in order to add employee records</p>
+
+                                            <div class="form-group">
+                                                <label for="example-text-input" class="col-form-label">Employee ID</label>
+                                                <input class="form-control" name="empcode" type="text" autocomplete="off" required id="empcode" onBlur="checkAvailabilityEmpid()">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="example-text-input" class="col-form-label">First Name</label>
+                                                <input class="form-control" name="firstName" type="text" required id="example-text-input">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="example-text-input" class="col-form-label">Last Name</label>
+                                                <input class="form-control" name="lastName" type="text" autocomplete="off" required id="example-text-input">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="example-email-input" class="col-form-label">Email</label>
+                                                <input class="form-control" name="email" type="email" autocomplete="off" required id="email" onBlur="checkAvailabilityEmailid()">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password" class="col-form-label">Password</label>
+                                                <input class="form-control" name="password" type="password" autocomplete="off" required id="password">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password" class="col-form-label">Confirm Password</label>
+                                                <input class="form-control" name="confirmpassword" type="password" autocomplete="off" required id="confirmpassword">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-form-label">Gender</label>
+                                                <select class="custom-select" name="gender" autocomplete="off">
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-form-label">Date of Birth</label>
+                                                <input class="form-control" name="dob" type="date" autocomplete="off" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="example-text-input" class="col-form-label">Department</label>
+                                                <input class="form-control" name="department" type="text" autocomplete="off" required id="example-text-input">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="example-text-input" class="col-form-label">Address</label>
+                                                <input class="form-control" name="address" type="text" autocomplete="off" required id="example-text-input">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="example-text-input" class="col-form-label">City/Town</label>
+                                                <input class="form-control" name="city" type="text" autocomplete="off" required id="example-text-input">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="example-text-input" class="col-form-label">Mobile Number</label>
+                                                <input class="form-control" name="mobile" type="text" autocomplete="off" required id="example-text-input">
+                                            </div>
+
+                                            <button class="btn btn-primary" name="add_employee" type="submit">ADD</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Input form end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- row area end -->
+            </div>
         </div>
+        <!-- footer area start-->
+        <?php include '../admin/layout/footer.php' ?>
+        <!-- footer area end-->
     </div>
-    <!-- jquery latest version -->
     <script src="../assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <!-- bootstrap 4 js -->
     <script src="../assets/js/popper.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/owl.carousel.min.js"></script>
     <script src="../assets/js/metisMenu.min.js"></script>
     <script src="../assets/js/jquery.slimscroll.min.js"></script>
     <script src="../assets/js/jquery.slicknav.min.js"></script>
-
-    <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <!-- start highcharts js -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <!-- start zingchart js -->
-    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-    <script>
-        zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
-    </script>
-    <!-- all line chart activation -->
-    <script src="assets/js/line-chart.js"></script>
-    <!-- all pie chart -->
-    <script src="assets/js/pie-chart.js"></script>
-
-    <!-- Start datatable js -->
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
-
-    <!-- others plugins -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="../assets/js/line-chart.js"></script>
+    <script src="../assets/js/pie-chart.js"></script>
     <script src="../assets/js/plugins.js"></script>
     <script src="../assets/js/scripts.js"></script>
 </body>

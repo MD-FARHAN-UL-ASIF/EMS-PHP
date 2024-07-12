@@ -10,7 +10,7 @@
     }
         catch (PDOException $e)
     {
-        echo "Looks like you don't have any database/connection for this project. Please check your Database Connection and Try Again! </br>";
+        echo "Please check your Database Connection and Try Again! </br>";
         exit("Error: " . $e->getMessage());
     }
 ?>
