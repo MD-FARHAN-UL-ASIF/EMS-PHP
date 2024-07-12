@@ -105,7 +105,9 @@ if (isset($_GET['id'])) {
                             </div><?php } ?>
                         <div class="card-body">
                             <div class="data-tables datatable-dark">
-                                <center><a href="create_employee.php" class="btn btn-sm btn-info">Add Employee</a></center>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <a href="create_employee.php" class="btn btn-sm btn-info">Add Employee</a>
+                                </div>
                                 <table id="dataTable3" class="table table-hover table-striped text-center">
                                     <thead class="text-capitalize">
                                         <tr>
