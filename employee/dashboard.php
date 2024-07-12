@@ -4,11 +4,11 @@ error_reporting(0);
 include('../includes/db_connection.php');
 
 // Redirect if admin_login session is not set
-if (empty($_SESSION['admin_login'])) {
-    header('location: login.php');
+if (empty($_SESSION['employee_login'])) {
+    header('location: ../index.php');
     exit(); // Add exit to stop further execution
 }
-$page_title = "Admin's Dashboard";
+$page_title = "Empployee's Dashboard";
 $breadcrumb = "Dashboard";
 ?>
 
@@ -18,7 +18,7 @@ $breadcrumb = "Dashboard";
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>ADMIN DASHBOARD - EMS</title>
+    <title>EMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="../assets/images/icon/favicon.ico">
     <!-- CSS -->
@@ -72,18 +72,18 @@ $breadcrumb = "Dashboard";
                 <div class="menu-inner">
                     <?php
                     $page = 'dashboard';
-                    include '../admin/layout/sidebar.php';
+                    include '../employee/layout/sidebar.php';
                     ?>
                 </div>
             </div>
         </div>
 
         <div class="main-content">
-            <?php include '../admin/layout/header.php' ?>
+            <?php include '../employee/layout/header.php' ?>
 
             <div class="main-content-inner">
                 <div class="sales-report-area mt-5 mb-5">
-<div class="row">
+<!-- <div class="row">
 <div class="col-md-3">
   <div class="single-report">
     <div class="s-report-inner">
@@ -113,7 +113,7 @@ $breadcrumb = "Dashboard";
     </div>
   </div>
 </div>
-</div>
+</div> -->
 
                 </div>
             </div>

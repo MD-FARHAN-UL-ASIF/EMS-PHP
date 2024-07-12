@@ -820,30 +820,39 @@ ul.breadcrumbs {
 /*-------------------- END Page Title Area -------------------*/
 
 /*-------------------- 2.4 Fact Area ------------------- */
-
 .single-report {
-  background: #fff;
+  background: linear-gradient(135deg, #7dd5fa, #baf1e4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
   overflow: hidden;
   position: relative;
+  transition: transform 0.3s ease-in-out;
+  color: #fff;
+  padding: 20px;
+  margin: 10px;
+}
+
+.single-report:hover {
+  transform: translateY(-10px);
 }
 
 .s-report-inner {
-  padding-left: 85px;
+  padding: 20px;
+  position: relative;
 }
 
 .single-report .icon {
   font-size: 32px;
   color: #fff;
-  background: var(--primary-color);
-  height: 95px;
-  width: 100px;
-  text-align: right;
-  padding-top: 40px;
-  padding-right: 22px;
+  height: 70px;
+  width: 70px;
+  text-align: center;
+  line-height: 70px;
   border-radius: 50%;
   position: absolute;
-  left: -39px;
-  top: -30px;
+  right: 20px;
+  top: 20px;
+  opacity: 0.1;
 }
 
 .s-report-title {
@@ -852,42 +861,50 @@ ul.breadcrumbs {
 
 .header-title {
   font-family: "Lato", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0;
-  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
   text-transform: capitalize;
   margin-bottom: 17px;
 }
 
-.single-report p {
-  font-size: 12px;
-  font-weight: 700;
-  color: #565656;
-  background: #ececec;
-  letter-spacing: 0;
-  padding: 0 9px;
-  height: 20px;
-  line-height: 20px;
-}
-
-.single-report h2 {
-  font-size: 26px;
-  color: #565656;
-  font-weight: 500;
-  letter-spacing: 0;
+.single-report h1, .single-report h2 {
+  font-size: 36px;
+  color: #fff;
+  font-weight: 600;
+  margin: 0;
 }
 
 .single-report span {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
-  color: #565656;
-  letter-spacing: 0;
+  color: #fff;
 }
 
 .highcharts-exporting-group {
   display: none;
 }
+
+@media (max-width: 768px) {
+  .s-report-inner {
+    padding: 20px;
+  }
+
+  .single-report .icon {
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+  }
+
+  .single-report h1, .single-report h2 {
+    font-size: 28px;
+  }
+
+  .header-title {
+    font-size: 18px;
+  }
+}
+
 
 /*-------------------- END Fact Area ------------------- */
 
@@ -2443,7 +2460,7 @@ body {
 /* login-s2 */
 
 .login-s2 {
-  background: #fff;
+  background: url('../assets/images/bgg.jpeg') no-repeat center center/cover;
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -2454,7 +2471,7 @@ body {
   position: absolute;
   height: 206%;
   width: 97%;
-  background: #fcfcff;
+  background: rgba(252, 252, 255, 0.9); /* Add a slight transparent overlay */
   border-radius: 50%;
   left: -42%;
   z-index: -1;
@@ -2473,10 +2490,17 @@ body {
   color: #444;
 }
 
+.login-s2 .login-box {
+  background: rgba(255, 255, 255, 0.85); /* Semi-transparent background for the login box */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* login-s3 */
 
 .login-bg {
-  background: url(../images/bg/singin-bg.jpg) center/cover no-repeat;
+  background: url(assets/images/admin_login.webp) center/cover no-repeat;
   position: relative;
   z-index: 1;
 }

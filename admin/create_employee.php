@@ -222,9 +222,21 @@ if (isset($_POST['add_employee'])) {
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="example-text-input" class="col-form-label">Department</label>
-                                                <input class="form-control" name="department" type="text" autocomplete="off" required id="example-text-input">
-                                            </div>
+                                            <label class="col-form-label">Preferred Department</label>
+                                            <select class="custom-select" name="department" autocomplete="off">
+                                                <option value="">Choose..</option>
+                                                <?php $sql = "SELECT Name from departments";
+                                                $query = $dbh -> prepare($sql);
+                                                $query->execute();
+                                                $results=$query->fetchAll(PDO::FETCH_OBJ);
+                                                $cnt=1;
+                                                if($query->rowCount() > 0){
+                                                foreach($results as $result)
+                                                {   ?> 
+                                                <option value="<?php echo htmlentities($result->Name);?>"><?php echo htmlentities($result->Name);?></option>
+                                                <?php }} ?>
+                                            </select>
+                                        </div>
 
                                             <div class="form-group">
                                                 <label for="example-text-input" class="col-form-label">Address</label>
