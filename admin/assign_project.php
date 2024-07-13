@@ -117,7 +117,7 @@ if (isset($_POST['add_project'])) {
             <div class="main-menu">
                 <div class="menu-inner">
                     <?php
-                    $page = 'employee';
+                    $page = 'assign_project';
                     include '../admin/layout/sidebar.php';
                     ?>
                 </div>

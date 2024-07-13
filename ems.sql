@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2024 at 08:02 PM
+-- Generation Time: Jul 13, 2024 at 02:01 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -137,7 +137,8 @@ CREATE TABLE `leaves` (
 INSERT INTO `leaves` (`id`, `LeaveType`, `ToDate`, `FromDate`, `Description`, `PostingDate`, `AdminRemark`, `AdminRemarkDate`, `Status`, `IsRead`, `empid`) VALUES
 (1, 'Annual Leave', '2024-07-15', '2024-07-10', 'Et aliquam neque sit', '2024-07-12 12:02:24', 'Enjoy', '2024-07-12 18:57:39 ', 1, 1, 11),
 (2, 'Sick Leave', '2024-07-16', '2024-07-15', 'Ratione at est iure ', '2024-07-12 12:09:57', 'Happy vacation', '2024-07-12 23:50:28 ', 1, 1, 12),
-(3, 'Sick Leave', '2024-07-14', '2024-07-09', 'jbjhvfty yfytf', '2024-07-12 17:53:18', 'snekfjbsgjhdg rf', '2024-07-12 23:54:35 ', 2, 1, 11);
+(3, 'Sick Leave', '2024-07-14', '2024-07-09', 'jbjhvfty yfytf', '2024-07-12 17:53:18', 'snekfjbsgjhdg rf', '2024-07-12 23:54:35 ', 2, 1, 11),
+(4, 'Sick Leave', '2024-07-15', '2024-07-13', 'need', '2024-07-13 09:15:58', NULL, NULL, 0, 1, 11);
 
 -- --------------------------------------------------------
 
@@ -181,17 +182,21 @@ CREATE TABLE `project` (
   `documents` varchar(255) NOT NULL,
   `submitted_documents` varchar(255) DEFAULT NULL,
   `empId` int(11) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `admin_remarks` varchar(255) DEFAULT NULL,
+  `admin_feedback` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`id`, `title`, `description`, `starting_date`, `closing_date`, `submission_date`, `documents`, `submitted_documents`, `empId`, `status`) VALUES
-(1, 'Illo hic porro repud', 'Aliqua Impedit max', '2024-04-12', '2024-04-15', NULL, '../assets/project_file/xyz.pdf', NULL, 1, 0),
-(2, 'Cupiditate quas amet', 'Occaecat ex anim fac', '2024-05-15', '2024-05-15', NULL, '../assets/project_file/zyx.pdf', NULL, 11, 0),
-(3, 'Login page', 'adeafef', '2024-07-12', '2024-07-15', NULL, '../assets/project_file/Pragoitihashik By Manik Bandopadhyay (BDeBooks.Com).pdf', NULL, 12, 0);
+INSERT INTO `project` (`id`, `title`, `description`, `starting_date`, `closing_date`, `submission_date`, `documents`, `submitted_documents`, `empId`, `status`, `admin_remarks`, `admin_feedback`) VALUES
+(1, 'Illo hic porro repud', 'Aliqua Impedit max', '2024-04-12', '2024-04-15', NULL, '../assets/project_file/xyz.pdf', NULL, 1, 0, NULL, NULL),
+(2, 'Cupiditate quas amet', 'Occaecat ex anim fac', '2024-05-15', '2024-05-15', '2024-07-13', '../assets/project_file/zyx.pdf', '../assets/project_file/NSIC_PROJECT_PROFILE - NSIC_PROJECT_PROFILE.csv.pdf', 11, 1, '9', 'Well Done, You did it well'),
+(3, 'Login page', 'adeafef', '2024-07-12', '2024-07-15', NULL, '../assets/project_file/Pragoitihashik By Manik Bandopadhyay (BDeBooks.Com).pdf', NULL, 12, 0, NULL, NULL),
+(4, 'Quis accusantium nih', 'Quas quas dolor sit', '1974-08-27', '2003-08-31', NULL, '../assets/project_file/niir_org - niir_org.csv.pdf', NULL, 5, 0, NULL, NULL),
+(5, 'Registration Page', 'Design and develop full responsive registration page', '2024-07-13', '2024-07-14', '2024-07-13', '../assets/project_file/niir_org - niir_org.csv.pdf', '../assets/project_file/NSIC_PROJECT_PROFILE - NSIC_PROJECT_PROFILE.csv.pdf', 12, 1, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -259,7 +264,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `leavetype`
@@ -271,7 +276,7 @@ ALTER TABLE `leavetype`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

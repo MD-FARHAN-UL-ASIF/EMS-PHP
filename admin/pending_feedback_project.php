@@ -63,7 +63,7 @@ $breadcrumb = "Project Management";
             <div class="main-menu">
                 <div class="menu-inner">
                     <?php
-                    $page = 'project';
+                    $page = 'pending_feedback';
                     include '../admin/layout/sidebar.php';
                     ?>
                 </div>
@@ -100,11 +100,13 @@ $breadcrumb = "Project Management";
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT project.id, project.title, project.description, project.starting_date, project.closing_date, project.documents,
-                                                        project.status, project.submission_date, project.submitted_documents, employees.FirstName, employees.LastName 
-                                                        FROM project 
-                                                        JOIN employees ON project.empId = employees.id 
-                                                        ORDER BY project.id DESC";
+                                               $sql = "SELECT project.id, project.title, project.description, project.starting_date, project.closing_date, project.documents,
+                                               project.status, project.submission_date, project.submitted_documents, employees.FirstName, employees.LastName 
+                                               FROM project 
+                                               JOIN employees ON project.empId = employees.id 
+                                               WHERE project.status = 1 AND project.admin_remarks IS NULL
+                                               ORDER BY project.id DESC";
+                                       
                                                 $query = $dbh->prepare($sql);
                                                 $query->execute();
                                                 $results = $query->fetchAll(PDO::FETCH_OBJ);

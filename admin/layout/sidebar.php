@@ -17,14 +17,13 @@
             </ul>
             
         </li>
-        <li class="<?php if($page=='manage-project') {echo 'active';} ?>">
+        <li class="<?php if($page=='assign_project' || $page=='project' || $page=='pending_feedback') {echo 'active';} ?>">
             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-briefcase"></i><span>Manage Project</span></a>
 
             <ul class="collapse">
-                <li ><a href="assign_project.php"><i class="fa fa-plus"></i> Assign Project</a></li>
-                <!-- <li ><a href="approved_leave.php"><i class="fa fa-check"></i> Approved</a></li>
-                <li ><a href="declined_leave.php"><i class="fa fa-times-circle"></i> Declined</a></li> -->
-                <li ><a href="project.php"><i class="fa fa-history"></i> All Project</a></li>
+                <li class="<?php if($page=='assign_project') {echo 'active';} ?>"><a href="assign_project.php"><i class="fa fa-plus"></i> Assign Project</a></li>
+                <li class="<?php if($page=='project') {echo 'active';} ?>"><a href="project.php"><i class="fa fa-history"></i> All Project</a></li>
+                <li class="<?php if($page=='pending_feedback') {echo 'active';} ?>"><a href="pending_feedback_project.php"><i class="fa fa-spinner"></i> Give Feedback</a></li>
             </ul>
             
         </li>                            
