@@ -26,6 +26,8 @@
                 <li class="<?php if($page=='pending_feedback') {echo 'active';} ?>"><a href="pending_feedback_project.php"><i class="fa fa-spinner"></i> Give Feedback</a></li>
             </ul>
             
-        </li>                            
+        </li>   
+        <li class="<?php if($page=='payout') {echo 'active';} ?>"><a href="payout.php"><i class="fa fa-money"></i> <span>Employee Payout</span></a></li>
+                         
     </ul>
 </nav>

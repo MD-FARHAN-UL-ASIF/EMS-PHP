@@ -127,6 +127,7 @@ if (isset($_GET['delid'])) {
                                             <th>Email</th>
                                             <th>Department</th>
                                             <th>Joined On</th>
+                                            <th>Salary</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
@@ -134,7 +135,7 @@ if (isset($_GET['delid'])) {
                                     <tbody>
 
                                         <?php
-                                        $sql = "SELECT EmpId,FirstName,LastName,Email,Department,Status,RegDate,id from employees";
+                                        $sql = "SELECT EmpId,FirstName,LastName,Email,Department,Status,RegDate,Salary,id from employees";
                                         $query = $dbh->prepare($sql);
                                         $query->execute();
                                         $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -153,6 +154,8 @@ if (isset($_GET['delid'])) {
                                                     <td><?php echo htmlentities($result->Department); ?></td>
 
                                                     <td><?php echo htmlentities($result->RegDate); ?></td>
+
+                                                    <td><?php echo htmlentities($result->Salary); ?></td>
 
                                                     <td><?php $stats = $result->Status;
                                                         if ($stats) {

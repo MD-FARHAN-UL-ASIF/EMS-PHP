@@ -26,13 +26,14 @@ if (isset($_POST['add_employee'])) {
     $mobile = filter_input(INPUT_POST, 'mobile', FILTER_SANITIZE_SPECIAL_CHARS);
     $status = 1;
     $regdate = date('Y-m-d H:i:s'); // Current date and time for RegDate
+    $salary = filter_input(INPUT_POST, 'salary', FILTER_SANITIZE_SPECIAL_CHARS);
 
     // Hash the password
     $hashed_password = md5($password);
 
     // Insert data into database
-    $sql = "INSERT INTO employees (EmpId, FirstName, LastName, Email, Password, Gender, Dob, Department, Address, City, Phone, Status, RegDate)
-            VALUES (:empid, :fname, :lname, :email, :password, :gender, :dob, :department, :address, :city, :mobile, :status, :regdate)";
+    $sql = "INSERT INTO employees (EmpId, FirstName, LastName, Email, Password, Gender, Dob, Department, Address, City, Phone, Status, RegDate, Salary)
+            VALUES (:empid, :fname, :lname, :email, :password, :gender, :dob, :department, :address, :city, :mobile, :status, :regdate, :salary)";
     $query = $dbh->prepare($sql);
     $query->bindParam(':empid', $empid, PDO::PARAM_STR);
     $query->bindParam(':fname', $fname, PDO::PARAM_STR);
@@ -47,6 +48,7 @@ if (isset($_POST['add_employee'])) {
     $query->bindParam(':mobile', $mobile, PDO::PARAM_STR);
     $query->bindParam(':status', $status, PDO::PARAM_INT);
     $query->bindParam(':regdate', $regdate, PDO::PARAM_STR);
+    $query->bindParam(':salary', $salary, PDO::PARAM_STR);
 
     if ($query->execute()) {
         $_SESSION['msg'] = "Employee has been added successfully";
@@ -61,8 +63,9 @@ if (isset($_POST['add_employee'])) {
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
+
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>EMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,11 +102,11 @@ if (isset($_POST['add_employee'])) {
                 url: "check_availability.php",
                 data: 'empcode=' + $("#empcode").val(),
                 type: "POST",
-                success: function (data) {
+                success: function(data) {
                     $("#empid-availability").html(data);
                     $("#loaderIcon").hide();
                 },
-                error: function () { }
+                error: function() {}
             });
         }
     </script>
@@ -114,15 +117,16 @@ if (isset($_POST['add_employee'])) {
                 url: "check_availability.php",
                 data: 'emailid=' + $("#email").val(),
                 type: "POST",
-                success: function (data) {
+                success: function(data) {
                     $("#emailid-availability").html(data);
                     $("#loaderIcon").hide();
                 },
-                error: function () { }
+                error: function() {}
             });
         }
     </script>
 </head>
+
 <body>
     <!-- preloader area start -->
     <div id="preloader">
@@ -178,22 +182,22 @@ if (isset($_POST['add_employee'])) {
                                             <p class="text-muted font-14 mb-4">Please fill up the form in order to add employee records</p>
 
                                             <div class="form-group">
-                                                <label for="example-text-input" class="col-form-label">Employee ID</label>
-                                                <input class="form-control" name="                                                                                                      " type="text" autocomplete="off" required id="empcode" onBlur="checkAvailabilityEmpid()">
+                                                <label for="empcode" class="col-form-label">Employee ID</label>
+                                                <input class="form-control" name="empcode" type="text" autocomplete="off" required id="empcode" onBlur="checkAvailabilityEmpid()">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="example-text-input" class="col-form-label">First Name</label>
-                                                <input class="form-control" name="firstName" type="text" required id="example-text-input">
+                                                <label for="firstName" class="col-form-label">First Name</label>
+                                                <input class="form-control" name="firstName" type="text" required id="firstName">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="example-text-input" class="col-form-label">Last Name</label>
-                                                <input class="form-control" name="lastName" type="text" autocomplete="off" required id="example-text-input">
+                                                <label for="lastName" class="col-form-label">Last Name</label>
+                                                <input class="form-control" name="lastName" type="text" autocomplete="off" required id="lastName">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="example-email-input" class="col-form-label">Email</label>
+                                                <label for="email" class="col-form-label">Email</label>
                                                 <input class="form-control" name="email" type="email" autocomplete="off" required id="email" onBlur="checkAvailabilityEmailid()">
                                             </div>
 
@@ -203,7 +207,7 @@ if (isset($_POST['add_employee'])) {
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="password" class="col-form-label">Confirm Password</label>
+                                                <label for="confirmpassword" class="col-form-label">Confirm Password</label>
                                                 <input class="form-control" name="confirmpassword" type="password" autocomplete="off" required id="confirmpassword">
                                             </div>
 
@@ -222,35 +226,43 @@ if (isset($_POST['add_employee'])) {
                                             </div>
 
                                             <div class="form-group">
-                                            <label class="col-form-label">Preferred Department</label>
-                                            <select class="custom-select" name="department" autocomplete="off">
-                                                <option value="">Choose..</option>
-                                                <?php $sql = "SELECT Name from departments";
-                                                $query = $dbh -> prepare($sql);
-                                                $query->execute();
-                                                $results=$query->fetchAll(PDO::FETCH_OBJ);
-                                                $cnt=1;
-                                                if($query->rowCount() > 0){
-                                                foreach($results as $result)
-                                                {   ?> 
-                                                <option value="<?php echo htmlentities($result->Name);?>"><?php echo htmlentities($result->Name);?></option>
-                                                <?php }} ?>
-                                            </select>
-                                        </div>
-
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="col-form-label">Address</label>
-                                                <input class="form-control" name="address" type="text" autocomplete="off" required id="example-text-input">
+                                                <label class="col-form-label">Preferred Department</label>
+                                                <select class="custom-select" name="department" autocomplete="off">
+                                                    <option value="">Choose..</option>
+                                                    <?php 
+                                                    $sql = "SELECT Name from departments";
+                                                    $query = $dbh->prepare($sql);
+                                                    $query->execute();
+                                                    $results = $query->fetchAll(PDO::FETCH_OBJ);
+                                                    if ($query->rowCount() > 0) {
+                                                        foreach ($results as $result) {   
+                                                    ?>
+                                                            <option value="<?php echo htmlentities($result->Name); ?>"><?php echo htmlentities($result->Name); ?></option>
+                                                    <?php 
+                                                        }
+                                                    } 
+                                                    ?>
+                                                </select>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="example-text-input" class="col-form-label">City/Town</label>
-                                                <input class="form-control" name="city" type="text" autocomplete="off" required id="example-text-input">
+                                                <label for="address" class="col-form-label">Address</label>
+                                                <input class="form-control" name="address" type="text" autocomplete="off" required id="address">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="example-text-input" class="col-form-label">Mobile Number</label>
-                                                <input class="form-control" name="mobile" type="text" autocomplete="off" required id="example-text-input">
+                                                <label for="city" class="col-form-label">City/Town</label>
+                                                <input class="form-control" name="city" type="text" autocomplete="off" required id="city">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="mobile" class="col-form-label">Mobile Number</label>
+                                                <input class="form-control" name="mobile" type="text" autocomplete="off" required id="mobile">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="salary" class="col-form-label">Salary</label>
+                                                <input class="form-control" name="salary" type="number" step="0.01" min="0" autocomplete="off" required id="salary">
                                             </div>
 
                                             <button class="btn btn-primary" name="add_employee" type="submit">ADD</button>
@@ -287,4 +299,5 @@ if (isset($_POST['add_employee'])) {
     <script src="../assets/js/plugins.js"></script>
     <script src="../assets/js/scripts.js"></script>
 </body>
+
 </html>
