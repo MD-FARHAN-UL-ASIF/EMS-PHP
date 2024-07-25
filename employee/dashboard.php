@@ -8,7 +8,7 @@ if (empty($_SESSION['employee_login'])) {
     header('location: ../index.php');
     exit(); // Add exit to stop further execution
 }
-$page_title = "Empployee's Dashboard";
+$page_title = "Employee's Dashboard";
 $breadcrumb = "Dashboard";
 ?>
 
@@ -36,24 +36,23 @@ $breadcrumb = "Dashboard";
     <!-- Modernizr JS -->
     <script src="../assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const gradients = [
-      "linear-gradient(135deg, #7dd5fa, #baf1e4)",
-      "linear-gradient(135deg, #f093fb, #f5576c)",
-      "linear-gradient(135deg, #5ee7df, #b490ca)",
-      "linear-gradient(135deg, #f9d423, #ff4e50)",
-      "linear-gradient(135deg, #1e3c72, #2a5298)"
-    ];
+        document.addEventListener("DOMContentLoaded", function() {
+            const gradients = [
+                "linear-gradient(135deg, #7dd5fa, #baf1e4)",
+                "linear-gradient(135deg, #f093fb, #f5576c)",
+                "linear-gradient(135deg, #5ee7df, #b490ca)",
+                "linear-gradient(135deg, #f9d423, #ff4e50)",
+                "linear-gradient(135deg, #1e3c72, #2a5298)"
+            ];
 
-    const cards = document.querySelectorAll('.single-report');
+            const cards = document.querySelectorAll('.single-report');
 
-    cards.forEach(card => {
-      const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
-      card.style.background = randomGradient;
-    });
-  });
-</script>
-
+            cards.forEach(card => {
+                const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+                card.style.background = randomGradient;
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -83,38 +82,47 @@ $breadcrumb = "Dashboard";
 
             <div class="main-content-inner">
                 <div class="sales-report-area mt-5 mb-5">
-<!-- <div class="row">
-<div class="col-md-3">
-  <div class="single-report">
-    <div class="s-report-inner">
-      <div class="icon"><i class="fa fa-users"></i></div>
-      <div class="s-report-title">
-        <h4 class="header-title mb-0">Registered Employees</h4>
-      </div>
-      <div>
-        <h1><?php include 'dashboard/employee_count.php'; ?></h1>
-        <span>Active Employees</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-md-3">
-  <div class="single-report">
-    <div class="s-report-inner">
-      <div class="icon"><i class="fa fa-users"></i></div>
-      <div class="s-report-title">
-        <h4 class="header-title mb-0">Registered Employees</h4>
-      </div>
-      <div>
-        <h1><?php include 'dashboard/employee_count.php'; ?></h1>
-        <span>Active Employees</span>
-      </div>
-    </div>
-  </div>
-</div>
-</div> -->
-
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="single-report">
+                                <div class="s-report-inner">
+                                    <div class="icon"><i class="fa fa-users"></i></div>
+                                    <div class="s-report-title">
+                                        <h4 class="header-title mb-0">Current Balance</h4>
+                                    </div>
+                                    <div>
+                                        <h1><?php include 'dashboard_card/current_balance.php'; ?><span> TK</span></h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="single-report">
+                                <div class="s-report-inner">
+                                    <div class="icon"><i class="fa fa-check"></i></div>
+                                    <div class="s-report-title">
+                                        <h4 class="header-title mb-0">Accepted Leaves</h4>
+                                    </div>
+                                    <div>
+                                        <h1><?php include 'dashboard_card/accepted_leaves_count.php'; ?><span> Days</span></h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="single-report">
+                                <div class="s-report-inner">
+                                    <div class="icon"><i class="fa fa-tasks"></i></div>
+                                    <div class="s-report-title">
+                                        <h4 class="header-title mb-0">Accepted Projects</h4>
+                                    </div>
+                                    <div>
+                                        <h1><?php include 'dashboard_card/accepted_projects_count.php'; ?><span> Projects</span></h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <?php include '../admin/layout/footer.php' ?>

@@ -20,5 +20,13 @@
                 <li class="<?php if($page == 'all_project') { echo 'active'; } ?>"><a href="all_project.php">Project History</a></li>
             </ul>
         </li>
+
+        <li class="has-submenu <?php if($page == 'salary' || $page == 'withdraw' || $page == '') { echo 'active'; } ?>">
+            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-id-badge"></i> <span>Accounts</span></a>
+            <ul class="submenu <?php if($page == 'pending_project' || $page == 'submitted_project' || $page == 'all_project') { echo 'in'; } ?>">
+                <li class="<?php if($page == 'salary') { echo 'active'; } ?>"><a href="salary.php"><i class="fa fa-spinner"></i> Salary & Balance</a></li>
+                <li class="<?php if($page == 'withdraw') { echo 'active'; } ?>"><a href="salary_withdraw.php"><i class="fa fa-check"></i> Withdraw Salary</a></li>
+            </ul>
+        </li>
     </ul>
 </nav>
