@@ -194,7 +194,7 @@ if (isset($_POST['add_project'])) {
                                                 </select>
                                             </div>
  
-                                            <button class="btn btn-primary" name="add_project" type="submit">ADD</button>
+                                            <button class="btn btn-sm btn-info" name="add_project" type="submit">ADD</button>
                                         </div>
                                     </form>
                                 </div>

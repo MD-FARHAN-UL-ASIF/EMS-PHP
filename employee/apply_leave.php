@@ -152,7 +152,7 @@ if (isset($_POST['apply'])) {
                                                 <textarea class="form-control" name="description" id="example-text-input" rows="5"></textarea>
                                             </div>
 
-                                            <button class="btn btn-primary" name="apply" id="apply" type="submit">SUBMIT</button>
+                                            <button class="btn btn-sm btn-info" name="apply" id="apply" type="submit">SUBMIT</button>
                                         </div>
                                     </form>
                                 </div>

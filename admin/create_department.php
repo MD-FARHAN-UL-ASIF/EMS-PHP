@@ -124,7 +124,7 @@ if (isset($_POST['add_department'])) {
                                                 <input class="form-control" name="code" type="text" autocomplete="off" required id="example-email-input">
                                             </div>
 
-                                            <button class="btn btn-primary" name="add_department" id="add_department" type="submit">ADD</button>
+                                            <button class="btn btn-sm btn-info" name="add_department" id="add_department" type="submit">ADD</button>
                                         </div>
                                     </form>
                                 </div>

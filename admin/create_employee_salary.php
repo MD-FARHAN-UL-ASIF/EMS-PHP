@@ -171,7 +171,7 @@ if (isset($_POST['give_salary'])) {
                                                 <input class="form-control" name="balance" type="text" required id="balance" readonly>
                                             </div>
 
-                                            <button class="btn btn-primary" name="give_salary" type="submit">Give Salary</button>
+                                            <button class="btn btn-sm btn-info" name="give_salary" type="submit">Give Salary</button>
                                         </div>
                                     </form>
                                 </div>

@@ -143,7 +143,7 @@ if (isset($_POST['withdraw_salary'])) {
                                                 <input class="form-control" name="salary_out" type="text" required id="salary_out">
                                             </div>
 
-                                            <button class="btn btn-primary" name="withdraw_salary" type="submit">Withdraw Salary</button>
+                                            <button class="btn btn-sm btn-info" name="withdraw_salary" type="submit">Withdraw Salary</button>
                                         </div>
                                     </form>
                                 </div>

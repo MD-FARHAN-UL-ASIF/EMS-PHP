@@ -265,7 +265,7 @@ if (isset($_POST['add_employee'])) {
                                                 <input class="form-control" name="salary" type="number" step="0.01" min="0" autocomplete="off" required id="salary">
                                             </div>
 
-                                            <button class="btn btn-primary" name="add_employee" type="submit">ADD</button>
+                                            <button class="btn btn-sm btn-info" name="add_employee" type="submit">ADD</button>
                                         </div>
                                     </form>
                                 </div>
