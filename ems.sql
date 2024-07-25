@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2024 at 10:43 PM
+-- Generation Time: Jul 25, 2024 at 01:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -103,12 +103,12 @@ INSERT INTO `employees` (`id`, `EmpId`, `FirstName`, `LastName`, `Email`, `Passw
 (2, 'Cum maxime quidem to', 'Shad', 'Samantha', 'samumofuse@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Male', '1983-04-24', 'Information Technology', 'Cumque quam qui volu', 'Cum ex voluptatem of', '+1 (982) 97', 1, '2024-07-12 02:12:20', 0),
 (3, 'Eaque molestiae earu', 'Yoko', 'Arden', 'xekunaza@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Male', '2023-05-08', 'Operations', 'In sed veniam est ', 'Labore vitae laudant', '+1 (932) 62', 1, '2024-07-12 02:13:01', 0),
 (4, 'Neque qui ut sapient', 'Carolyn', 'Dolan', 'cezagulosu@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Female', '1970-01-21', 'Marketing', 'Ut consequatur nemo', 'Est earum sed irure', '+1 (918) 18', 1, '2024-07-12 02:13:22', 0),
-(5, 'Praesentium magna ip', 'Kyle', 'Ivana', 'dumuq@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Female', '1977-07-05', 'Quinn', 'Tiger', 'Odysseus', 'Fallon', 1, '2024-07-12 02:30:44', 0),
-(6, 'Veniam est beatae ', 'Gil', 'Wayne', 'xybuletopo@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Female', '2008-12-13', 'Kirby', 'Mufutau', 'Chloe', 'Rebekah', 1, '2024-07-12 02:30:54', 0),
-(8, 'Cupiditate sint eli', 'Lesley', 'Aileen', 'nokybeqine@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Other', '2009-11-06', 'Patience', 'Vanna', 'Cameron', 'Adena', 1, '2024-07-12 02:32:40', 0),
-(9, 'Sed ut eaque corpori', 'Joelle', 'Cassidy', 'qytape@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Female', '1988-07-07', 'Olivia', 'Madeson', 'Quyn', 'Rigel', 1, '2024-07-12 02:35:37', 0),
-(10, 'Tempora aspernatur s', 'Wesley', 'Kiara', 'sysyji@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Female', '2009-09-27', 'Heidi', 'Bruce', 'Kane', 'Zenaida', 1, '2024-07-12 02:35:54', 0),
-(11, 'EX9', 'Farhan b', 'Chowdhury', 'fx@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Male', '2000-11-10', 'Information Technology', 'cv c', 'nkjnk', '', 1, '2024-07-12 06:49:33', 50000),
+(5, 'Praesentium magna ip', 'Kyle', 'Ivana', 'dumuq@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Female', '1977-07-05', 'Quinn', 'Tiger', 'Odysseus', '01234567890', 1, '2024-07-12 02:30:44', 0),
+(6, 'Veniam est beatae ', 'Gil', 'Wayne', 'xybuletopo@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Female', '2008-12-13', 'Kirby', 'Mufutau', 'Chloe', '03214569877', 1, '2024-07-12 02:30:54', 0),
+(8, 'Cupiditate sint eli', 'Lesley', 'Aileen', 'nokybeqine@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Other', '2009-11-06', 'Patience', 'Vanna', 'Cameron', '03214569877', 1, '2024-07-12 02:32:40', 0),
+(9, 'Sed ut eaque corpori', 'Joelle', 'Cassidy', 'qytape@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Female', '1988-07-07', 'Olivia', 'Madeson', 'Quyn', '01235469871', 1, '2024-07-12 02:35:37', 0),
+(10, 'Tempora aspernatur s', 'Wesley', 'Kiara', 'sysyji@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'Female', '2009-09-27', 'Heidi', 'Bruce', 'Kane', '01234567893', 1, '2024-07-12 02:35:54', 0),
+(11, 'EX9', 'Farhan ', 'Chowdhury', 'fx@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Male', '2000-11-10', 'Information Technology', 'cv c', 'nkjnk', '545646542', 1, '2024-07-12 06:49:33', 50000),
 (12, 'ER45', 'Shahrior', 'Rahman', 'sh@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Male', '2000-06-29', 'Marketing', 'sfssssssss', 'dff', '', 1, '2024-07-12 08:08:58', 50000),
 (13, 'ZH12', 'Zahid', 'Hasan', 'zh@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Male', '2000-06-16', 'Finance', 'Dhaka', 'Dhaka', '01234567891', 1, '2024-07-15 12:19:54', 45000);
 
@@ -135,7 +135,9 @@ CREATE TABLE `employee_salary` (
 INSERT INTO `employee_salary` (`id`, `empId`, `salary_in`, `salary_out`, `balance`, `month`, `payout_date`) VALUES
 (1, 11, 50000, 0, 50000, 'January', '2024-07-15 16:37:11'),
 (2, 11, 50000, 0, 100000, 'February', '2024-07-15 16:38:37'),
-(3, 13, 45000, 0, 45000, 'January', '2024-07-15 16:42:28');
+(3, 13, 45000, 0, 45000, 'January', '2024-07-15 16:42:28'),
+(4, 12, 50000, 0, 50000, 'February', '2024-07-17 04:28:27'),
+(5, 11, 0, 15000, 85000, 'July', '2024-07-17 12:04:56');
 
 -- --------------------------------------------------------
 
@@ -297,7 +299,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `employee_salary`
 --
 ALTER TABLE `employee_salary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `leaves`

@@ -89,11 +89,11 @@ $breadcrumb = "Dashboard";
                                 <div class="s-report-inner">
                                     <div class="icon"><i class="fa fa-users"></i></div>
                                     <div class="s-report-title">
-                                        <h4 class="header-title mb-0">Registered Employees</h4>
+                                        <h4 class="header-title mb-0">Department</h4>
                                     </div>
                                     <div>
-                                        <h1><?php include 'dashboard/employee_count.php'; ?></h1>
-                                        <span>Active Employees</span>
+                                        <h1><?php include 'dashboard/department_count.php'; ?></h1>
+                                        <span>Active Department</span>
                                     </div>
                                 </div>
                             </div>
@@ -109,6 +109,21 @@ $breadcrumb = "Dashboard";
                                     <div>
                                         <h1><?php include 'dashboard/employee_count.php'; ?></h1>
                                         <span>Active Employees</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="single-report">
+                                <div class="s-report-inner">
+                                    <div class="icon"><i class="fa fa-file"></i></div>
+                                    <div class="s-report-title">
+                                        <h4 class="header-title mb-0">Finished Proejct</h4>
+                                    </div>
+                                    <div>
+                                        <h1><?php include 'dashboard/complete_project_count.php'; ?></h1>
+                                        <span>Successfully</span>
                                     </div>
                                 </div>
                             </div>

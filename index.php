@@ -93,9 +93,9 @@ if (isset($_POST['signin'])) {
                                     <label class="custom-control-label" for="customControlAutosizing">Remember Me</label>
                                 </div>
                             </div>
-                            <div class="col-6 text-right">
+                            <!-- <div class="col-6 text-right">
                                 <a href="password-recovery.php">Forgot Password?</a>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="submit-btn-area">
                             <button id="form_submit" type="submit" name="signin">Login <i class="ti-arrow-right"></i></button>
