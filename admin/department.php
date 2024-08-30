@@ -129,7 +129,6 @@ if (isset($_GET['del'])) {
                                                         <td><?php echo htmlentities($result->Code); ?></td>
                                                         <td><?php echo htmlentities($result->CreationDate); ?></td>
                                                         <td>
-                                                            <a href="edit-department.php?deptid=<?php echo htmlentities($result->id); ?>"><i class="fa fa-edit" style="color:green"></i></a>
                                                             <a href="department.php?del=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-trash" style="color:red"></i></a>
                                                         </td>
                                                     </tr>

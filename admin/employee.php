@@ -171,10 +171,15 @@ if (isset($_GET['delid'])) {
                                                         <a href="update_employee.php?empid=<?php echo htmlentities($result->id); ?>" class="btn btn-sm btn-primary" title="Edit"><i class="fa fa-edit"></i></a>
                                                         <a href="employee.php?delid=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to delete this employee?');" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
                                                         <?php if ($result->Status == 1) { ?>
-                                                            <a href="employee.php?inid=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to deactivate this employee?');" class="btn btn-sm btn-warning" title="Deactivate"><i class="fa fa-times-circle"></i></a>
-                                                        <?php } else { ?>
-                                                            <a href="employee.php?id=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to activate this employee?');" class="btn btn-sm btn-success" title="Activate"><i class="fa fa-check"></i></a>
-                                                        <?php } ?>
+    <a href="employee.php?inid=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to deactivate this employee?');" class="btn btn-sm btn-warning" title="Deactivate">
+        <i class="fa fa-times-circle" style="color: white;"></i>
+    </a>
+<?php } else { ?>
+    <a href="employee.php?id=<?php echo htmlentities($result->id); ?>" onclick="return confirm('Are you sure you want to activate this employee?');" class="btn btn-sm btn-success" title="Activate">
+        <i class="fa fa-check" style="color: white;"></i>
+    </a>
+<?php } ?>
+
                                                     </td>
                                                 </tr>
                                         <?php $cnt++;

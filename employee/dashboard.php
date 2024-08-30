@@ -84,44 +84,53 @@ $breadcrumb = "Dashboard";
                 <div class="sales-report-area mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="single-report">
-                                <div class="s-report-inner">
-                                    <div class="icon"><i class="fa fa-users"></i></div>
-                                    <div class="s-report-title">
-                                        <h4 class="header-title mb-0">Current Balance</h4>
-                                    </div>
-                                    <div>
-                                        <h1><?php include 'dashboard_card/current_balance.php'; ?><span> TK</span></h1>
+                            <a href="salary.php" style="text-decoration: none; color: inherit;">
+                                <div class="single-report">
+                                    <div class="s-report-inner">
+                                        <div class="icon"><i class="fa fa-users"></i></div>
+                                        <div class="s-report-title">
+                                            <h4 class="header-title mb-0">Current Balance</h4>
+                                        </div>
+                                        <div>
+                                            <h1><?php include 'dashboard_card/current_balance.php'; ?><span> TK</span></h1>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
+
                         <div class="col-md-3">
-                            <div class="single-report">
-                                <div class="s-report-inner">
-                                    <div class="icon"><i class="fa fa-check"></i></div>
-                                    <div class="s-report-title">
-                                        <h4 class="header-title mb-0">Accepted Leaves</h4>
-                                    </div>
-                                    <div>
-                                        <h1><?php include 'dashboard_card/accepted_leaves_count.php'; ?><span> Days</span></h1>
+                            <a href="leave.php" style="text-decoration: none; color: inherit;">
+                                <div class="single-report">
+                                    <div class="s-report-inner">
+                                        <div class="icon"><i class="fa fa-check"></i></div>
+                                        <div class="s-report-title">
+                                            <h4 class="header-title mb-0">Accepted Leaves</h4>
+                                        </div>
+                                        <div>
+                                            <h1><?php include 'dashboard_card/accepted_leaves_count.php'; ?><span> Days</span></h1>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
+
                         <div class="col-md-3">
-                            <div class="single-report">
-                                <div class="s-report-inner">
-                                    <div class="icon"><i class="fa fa-tasks"></i></div>
-                                    <div class="s-report-title">
-                                        <h4 class="header-title mb-0">Accepted Projects</h4>
-                                    </div>
-                                    <div>
-                                        <h1><?php include 'dashboard_card/accepted_projects_count.php'; ?><span> Projects</span></h1>
+                            <a href="all_project.php" style="text-decoration: none; color: inherit;">
+                                <div class="single-report">
+                                    <div class="s-report-inner">
+                                        <div class="icon"><i class="fa fa-tasks"></i></div>
+                                        <div class="s-report-title">
+                                            <h4 class="header-title mb-0">Accepted Projects</h4>
+                                        </div>
+                                        <div>
+                                            <h1><?php include 'dashboard_card/accepted_projects_count.php'; ?><span> Projects</span></h1>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -257,7 +257,7 @@ if (isset($_POST['add_employee'])) {
 
                                             <div class="form-group">
                                                 <label for="mobile" class="col-form-label">Mobile Number</label>
-                                                <input class="form-control" name="mobile" type="text" autocomplete="off" required id="mobile">
+                                                <input class="form-control" name="mobile" type="number" autocomplete="off" required id="mobile">
                                             </div>
 
                                             <div class="form-group">

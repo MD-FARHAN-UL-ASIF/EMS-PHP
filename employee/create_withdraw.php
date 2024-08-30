@@ -23,6 +23,13 @@ $previous_balance = $result ? $result->balance : 0;
 if (isset($_POST['withdraw_salary'])) {
     $salary_out = filter_input(INPUT_POST, 'salary_out', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
+    // Check if the salary_out value is less than 10,000
+    if ($salary_out < 10000) {
+        $_SESSION['error'] = "ERROR: The withdraw amount cannot be less than 10,000.";
+        header('location: create_withdraw.php');
+        exit();
+    }
+
     // Check if previous balance is greater than withdraw amount
     if ($previous_balance < $salary_out) {
         $_SESSION['error'] = "ERROR: Insufficient balance. Cannot withdraw the requested amount.";

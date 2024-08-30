@@ -85,49 +85,57 @@ $breadcrumb = "Dashboard";
                 <div class="sales-report-area mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="single-report">
-                                <div class="s-report-inner">
-                                    <div class="icon"><i class="fa fa-users"></i></div>
-                                    <div class="s-report-title">
-                                        <h4 class="header-title mb-0">Department</h4>
-                                    </div>
-                                    <div>
-                                        <h1><?php include 'dashboard/department_count.php'; ?></h1>
-                                        <span>Active Department</span>
+                            <a href="department.php" style="text-decoration: none; color: inherit;">
+                                <div class="single-report">
+                                    <div class="s-report-inner">
+                                        <div class="icon"><i class="fa fa-users"></i></div>
+                                        <div class="s-report-title">
+                                            <h4 class="header-title mb-0">Department</h4>
+                                        </div>
+                                        <div>
+                                            <h1><?php include 'dashboard/department_count.php'; ?></h1>
+                                            <span>Active Department</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <div class="col-md-3">
-                            <div class="single-report">
-                                <div class="s-report-inner">
-                                    <div class="icon"><i class="fa fa-users"></i></div>
-                                    <div class="s-report-title">
-                                        <h4 class="header-title mb-0">Registered Employees</h4>
-                                    </div>
-                                    <div>
-                                        <h1><?php include 'dashboard/employee_count.php'; ?></h1>
-                                        <span>Active Employees</span>
+                            <a href="employee.php" style="text-decoration: none; color: inherit;">
+                                <div class="single-report">
+                                    <div class="s-report-inner">
+                                        <div class="icon"><i class="fa fa-users"></i></div>
+                                        <div class="s-report-title">
+                                            <h4 class="header-title mb-0">Registered Employees</h4>
+                                        </div>
+                                        <div>
+                                            <h1><?php include 'dashboard/employee_count.php'; ?></h1>
+                                            <span>Active Employees</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
+
                         <div class="col-md-3">
-                            <div class="single-report">
-                                <div class="s-report-inner">
-                                    <div class="icon"><i class="fa fa-file"></i></div>
-                                    <div class="s-report-title">
-                                        <h4 class="header-title mb-0">Finished Proejct</h4>
-                                    </div>
-                                    <div>
-                                        <h1><?php include 'dashboard/complete_project_count.php'; ?></h1>
-                                        <span>Successfully</span>
+                            <a href="project.php" style="text-decoration: none; color: inherit;">
+                                <div class="single-report">
+                                    <div class="s-report-inner">
+                                        <div class="icon"><i class="fa fa-file"></i></div>
+                                        <div class="s-report-title">
+                                            <h4 class="header-title mb-0">Finished Project</h4>
+                                        </div>
+                                        <div>
+                                            <h1><?php include 'dashboard/complete_project_count.php'; ?></h1>
+                                            <span>Successfully</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
+
                     </div>
 
                 </div>
