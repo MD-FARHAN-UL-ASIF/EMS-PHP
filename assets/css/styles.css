@@ -116,7 +116,8 @@
   height: 100vh;
   width: 280px;
   overflow: hidden;
-  background: linear-gradient(to right, #4b0082 0%, #2b1055 100%);
+  /* to change sidemenu color */
+  background: linear-gradient(to right, #4b0082 0%, #2b1055 100%); 
   box-shadow: 2px 0 32px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease 0s;
 }
