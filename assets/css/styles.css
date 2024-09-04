@@ -117,7 +117,7 @@
   width: 280px;
   overflow: hidden;
   /* to change sidemenu color */
-  background: linear-gradient(to right, #4b0082 0%, #2b1055 100%); 
+  background: linear-gradient(to right, #03e3e3 0%, #355053 100%); 
   box-shadow: 2px 0 32px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease 0s;
 }

@@ -56,7 +56,7 @@ if (isset($_POST['withdraw_salary'])) {
 
     if ($query->execute()) {
         $_SESSION['msg'] = "Salary withdraw done successfully";
-        header('location: salary.php');
+        header('location: salary_withdraw.php');
         exit();
     } else {
         $_SESSION['error'] = "ERROR: Could not withdraw salary. Please try again.";

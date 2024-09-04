@@ -148,7 +148,8 @@ $balance = $latestBalance ? $latestBalance->balance : 0; // Set to 0 if no recor
                                             $sql = "SELECT es.id, e.FirstName, e.LastName, es.salary_in, es.month, es.balance, es.payout_date 
                                                     FROM employee_salary es 
                                                     JOIN employees e ON es.empId = e.id 
-                                                    WHERE es.empId = :empId AND es.salary_out = 0";
+                                                    WHERE es.empId = :empId AND es.salary_out = 0
+                                                      ORDER BY es.payout_date DESC";
                                             $query = $dbh->prepare($sql);
                                             $query->bindParam(':empId', $empId, PDO::PARAM_INT);
                                             $query->execute();

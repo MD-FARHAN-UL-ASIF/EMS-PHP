@@ -110,9 +110,11 @@ $breadcrumb = "WIthdraw Salary";
                                             <?php
                                             $empId = $_SESSION['eid'];
                                             $sql = "SELECT es.id, e.FirstName, e.LastName, es.salary_out, es.month, es.balance, es.payout_date 
-                                                    FROM employee_salary es 
-                                                    JOIN employees e ON es.empId = e.id 
-                                                    WHERE es.empId = :empId AND es.salary_in = 0";
+        FROM employee_salary es 
+        JOIN employees e ON es.empId = e.id 
+        WHERE es.empId = :empId AND es.salary_in = 0 
+        ORDER BY es.payout_date DESC";
+
                                             $query = $dbh->prepare($sql);
                                             $query->bindParam(':empId', $empId, PDO::PARAM_INT);
                                             $query->execute();
