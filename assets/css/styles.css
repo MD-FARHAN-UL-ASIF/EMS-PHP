@@ -2330,14 +2330,19 @@ table.dataTable thead td {
 /*-------------------- END Invoice ------------------- */
 
 /*-------------------- 23. Login ------------------- */
-
 body {
-  background: url('../assets/images/admin_login.webp') no-repeat center center fixed;
-  background-size: cover;
+  /* background-image: url('../images/bgg.jpeg'); Set the background image */
+
+  /* Optional: Set a default background color */
+  background-color: #f0f0f0;
 }
 
 .login-area {
-  background: rgba(255, 255, 255, 0.8);
+  background-image: url('../images/bgg.jpeg'); /* Set the background image */
+  background-size: cover; /* Ensure the image covers the entire area */
+  background-position: center center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-color: rgba(45, 45, 49, 0.8); /* Optional: Overlay a deep blue color with some opacity */
   padding: 50px 0;
 }
 
@@ -2458,11 +2463,15 @@ body {
 }
 
 
+
 /* login-s2 */
 
 .login-s2 {
-  background: url('../assets/images/bgg.jpeg') no-repeat center center/cover;
-  position: relative;
+
+  background-image: url('../images/login.jpg'); /* Set the background image */
+  background-size: cover; /* Ensure the image covers the entire area */
+  background-position: center center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating the image */  position: relative;
   z-index: 1;
   overflow: hidden;
 }
