@@ -5,7 +5,7 @@ include('../includes/db_connection.php');
 
 if (empty($_SESSION['employee_login'])) {
     header('location: ../index.php');
-    exit(); // Add exit to stop further execution
+    exit(); // Stop further execution if not logged in
 }
 
 $page_title = "Update Profile";
@@ -22,20 +22,24 @@ if (isset($_POST['update'])) {
     $city = $_POST['city'];
     $mobile = $_POST['mobile'];
 
-    $sql = "UPDATE employees SET FirstName=:fname, LastName=:lname, Gender=:gender, Dob=:dob, Address=:address, City=:city, Phone=:mobile WHERE id=:eid";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':fname', $fname, PDO::PARAM_STR);
-    $query->bindParam(':lname', $lname, PDO::PARAM_STR);
-    $query->bindParam(':gender', $gender, PDO::PARAM_STR);
-    $query->bindParam(':dob', $dob, PDO::PARAM_STR);
-    $query->bindParam(':address', $address, PDO::PARAM_STR);
-    $query->bindParam(':city', $city, PDO::PARAM_STR);
-    $query->bindParam(':mobile', $mobile, PDO::PARAM_STR);
-    $query->bindParam(':eid', $eid, PDO::PARAM_STR);
-    $query->execute();
+    // Server-side validation to ensure mobile number is numeric and 11 digits
+    if (!is_numeric($mobile) || strlen($mobile) != 11) {
+        $error = "Invalid mobile number. Must be 11 digits.";
+    } else {
+        $sql = "UPDATE employees SET FirstName=:fname, LastName=:lname, Gender=:gender, Dob=:dob, Address=:address, City=:city, Phone=:mobile WHERE id=:eid";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $query->bindParam(':lname', $lname, PDO::PARAM_STR);
+        $query->bindParam(':gender', $gender, PDO::PARAM_STR);
+        $query->bindParam(':dob', $dob, PDO::PARAM_STR);
+        $query->bindParam(':address', $address, PDO::PARAM_STR);
+        $query->bindParam(':city', $city, PDO::PARAM_STR);
+        $query->bindParam(':mobile', $mobile, PDO::PARAM_STR);
+        $query->bindParam(':eid', $eid, PDO::PARAM_STR);
+        $query->execute();
 
-
-    $msg = "Profile details updated Successfully";
+        $msg = "Profile details updated successfully";
+    }
 }
 ?>
 <!doctype html>
@@ -172,8 +176,8 @@ if (isset($_POST['update'])) {
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label">Contact Number</label>
-                                                    <input class="form-control" name="mobile" type="text" value="<?php echo htmlentities($result->Phone); ?>" maxlength="10" autocomplete="off" required>
+                                                    <label for="mobile" class="col-form-label">Contact Number</label>
+                                                    <input class="form-control" name="mobile" id="mobile" type="text" value="<?php echo htmlentities($result->Phone); ?>" maxlength="11" required autocomplete="off" oninput="validateMobile(this)">
                                                 </div>
 
 
@@ -216,6 +220,12 @@ if (isset($_POST['update'])) {
         <script src="https://www.amcharts.com/lib/3/light.js"></script>
         <script src="../assets/js/amcharts.js"></script>
         <script src="../assets/js/scripts.js"></script>
+        <script>
+            // JavaScript function to ensure only numeric input and limit it to 11 digits
+            function validateMobile(input) {
+                input.value = input.value.replace(/[^0-9]/g, '').substring(0, 11);
+            }
+        </script>
 </body>
 
 </html>

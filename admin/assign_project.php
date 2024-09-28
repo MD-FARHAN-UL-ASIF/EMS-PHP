@@ -12,6 +12,16 @@ $page_title = "Assign Project";
 $breadcrumb = "Project Management";
 
 if (isset($_POST['add_project'])) {
+    // Fetch the starting and closing dates
+    $starting_date = filter_input(INPUT_POST, 'starting_date', FILTER_SANITIZE_SPECIAL_CHARS);
+    $closing_date = filter_input(INPUT_POST, 'closing_date', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    // Check if the closing date is before the starting date
+    if (strtotime($closing_date) < strtotime($starting_date)) {
+        $_SESSION['error'] = "Closing date cannot be earlier than starting date.";
+        header('location: assign_project.php');
+        exit();
+    }
     // Handle file upload
     $target_dir = "../assets/project_file/";
     $target_file = $target_dir . basename($_FILES["documents"]["name"]);
@@ -69,7 +79,7 @@ if (isset($_POST['add_project'])) {
                 exit();
             } else {
                 $_SESSION['error'] = "ERROR: Could not add project. Please try again.";
-                header('location: create_project.php');
+                header('location: assign_project.php');
                 exit();
             }
         } else {

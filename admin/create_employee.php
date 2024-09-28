@@ -181,7 +181,7 @@ if (isset($_POST['add_employee'])) {
                                     <?php unset($_SESSION['msg']); ?>
                                 <?php } ?>
                                 <div class="card">
-                                    <form name="addemp" method="POST">
+                                    <form name="addemp" method="POST" onsubmit="return valid();">
 
                                         <div class="card-body">
                                             <p class="text-muted font-14 mb-4">Please fill up the form in order to add employee records</p>
@@ -193,85 +193,70 @@ if (isset($_POST['add_employee'])) {
 
                                             <div class="form-group">
                                                 <label for="firstName" class="col-form-label">First Name</label>
-                                                <input class="form-control" name="firstName" type="text" required id="firstName">
+                                                <input class="form-control" name="firstName" type="text" autocomplete="off" required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="lastName" class="col-form-label">Last Name</label>
-                                                <input class="form-control" name="lastName" type="text" autocomplete="off" required id="lastName">
+                                                <input class="form-control" name="lastName" type="text" autocomplete="off" required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="email" class="col-form-label">Email</label>
                                                 <input class="form-control" name="email" type="email" autocomplete="off" required id="email" onBlur="checkAvailabilityEmailid()">
+                                                <span id="emailid-availability" style="font-size:12px;"></span>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="password" class="col-form-label">Password</label>
-                                                <input class="form-control" name="password" type="password" autocomplete="off" required id="password">
+                                                <input class="form-control" name="password" type="password" autocomplete="off" required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="confirmpassword" class="col-form-label">Confirm Password</label>
-                                                <input class="form-control" name="confirmpassword" type="password" autocomplete="off" required id="confirmpassword">
+                                                <input class="form-control" name="confirmpassword" type="password" autocomplete="off" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-form-label">Gender</label>
-                                                <select class="custom-select" name="gender" autocomplete="off">
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                    <option value="Other">Other</option>
+                                                <label for="gender" class="col-form-label">Gender</label>
+                                                <select name="gender" class="form-control" required>
+                                                    <option value="">Select gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
                                                 </select>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-form-label">Date of Birth</label>
-                                                <input class="form-control" name="dob" type="date" autocomplete="off" required>
+                                                <label for="dob" class="col-form-label">Date of Birth</label>
+                                                <input class="form-control" type="date" name="dob" autocomplete="off" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-form-label">Preferred Department</label>
-                                                <select class="custom-select" name="department" autocomplete="off">
-                                                    <option value="">Choose..</option>
-                                                    <?php
-                                                    $sql = "SELECT Name from departments";
-                                                    $query = $dbh->prepare($sql);
-                                                    $query->execute();
-                                                    $results = $query->fetchAll(PDO::FETCH_OBJ);
-                                                    if ($query->rowCount() > 0) {
-                                                        foreach ($results as $result) {
-                                                    ?>
-                                                            <option value="<?php echo htmlentities($result->Name); ?>"><?php echo htmlentities($result->Name); ?></option>
-                                                    <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <label for="department" class="col-form-label">Department</label>
+                                                <input class="form-control" name="department" type="text" autocomplete="off" required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="address" class="col-form-label">Address</label>
-                                                <input class="form-control" name="address" type="text" autocomplete="off" required id="address">
+                                                <input class="form-control" name="address" type="text" autocomplete="off" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="city" class="col-form-label">City/Town</label>
-                                                <input class="form-control" name="city" type="text" autocomplete="off" required id="city">
+                                                <label for="city" class="col-form-label">City</label>
+                                                <input class="form-control" name="city" type="text" autocomplete="off" required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="mobile" class="col-form-label">Mobile Number</label>
-                                                <input class="form-control" name="mobile" type="text" autocomplete="off" required id="mobile" maxlength="11" oninput="validateMobile(this)">
+                                                <input class="form-control" name="mobile" type="number" autocomplete="off" required id="mobile" maxlength="11" oninput="validateMobile(this)" onkeypress="return isNumberKey(event)">
                                             </div>
-
 
                                             <div class="form-group">
                                                 <label for="salary" class="col-form-label">Salary</label>
-                                                <input class="form-control" name="salary" type="number" step="0.01" min="0" autocomplete="off" required id="salary">
+                                                <input class="form-control" name="salary" type="number" autocomplete="off" required>
                                             </div>
 
-                                            <button class="btn btn-sm btn-info" name="add_employee" type="submit">ADD</button>
+                                            <button type="submit" name="add_employee" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -283,27 +268,35 @@ if (isset($_POST['add_employee'])) {
                 <!-- row area end -->
             </div>
         </div>
-        <!-- footer area start-->
-        <?php include '../admin/layout/footer.php' ?>
-        <!-- footer area end-->
-    </div>
-    <script src="../assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/owl.carousel.min.js"></script>
-    <script src="../assets/js/metisMenu.min.js"></script>
-    <script src="../assets/js/jquery.slimscroll.min.js"></script>
-    <script src="../assets/js/jquery.slicknav.min.js"></script>
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
-    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-    <script src="../assets/js/line-chart.js"></script>
-    <script src="../assets/js/pie-chart.js"></script>
-    <script src="../assets/js/plugins.js"></script>
-    <script src="../assets/js/scripts.js"></script>
+
+        <script src="../assets/js/vendor/jquery-2.2.4.min.js"></script>
+        <script src="../assets/js/popper.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/owl.carousel.min.js"></script>
+        <script src="../assets/js/metisMenu.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script src="../assets/js/jquery.slicknav.min.js"></script>
+        <!-- others plugins -->
+        <script src="../assets/js/plugins.js"></script>
+        <script src="../assets/js/scripts.js"></script>
+
+        <script>
+            // Ensure only numbers are input
+            function isNumberKey(evt) {
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;  // Block any non-numeric input
+                }
+                return true;
+            }
+
+            // Ensure the input doesn't exceed 11 digits
+            function validateMobile(input) {
+                if (input.value.length > 11) {
+                    input.value = input.value.slice(0, 11); // Truncate input to 11 digits
+                }
+            }
+        </script>
 </body>
 
 </html>
