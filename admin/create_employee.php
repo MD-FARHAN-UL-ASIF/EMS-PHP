@@ -28,6 +28,11 @@ if (isset($_POST['add_employee'])) {
     $regdate = date('Y-m-d H:i:s'); // Current date and time for RegDate
     $salary = filter_input(INPUT_POST, 'salary', FILTER_SANITIZE_SPECIAL_CHARS);
 
+    if (!preg_match('/^\d{11}$/', $mobile)) {
+        $_SESSION['error'] = "Mobile number must be exactly 11 digits.";
+        header('location: create_employee.php');
+        exit();
+    }
     // Hash the password
     $hashed_password = md5($password);
 
@@ -229,18 +234,18 @@ if (isset($_POST['add_employee'])) {
                                                 <label class="col-form-label">Preferred Department</label>
                                                 <select class="custom-select" name="department" autocomplete="off">
                                                     <option value="">Choose..</option>
-                                                    <?php 
+                                                    <?php
                                                     $sql = "SELECT Name from departments";
                                                     $query = $dbh->prepare($sql);
                                                     $query->execute();
                                                     $results = $query->fetchAll(PDO::FETCH_OBJ);
                                                     if ($query->rowCount() > 0) {
-                                                        foreach ($results as $result) {   
+                                                        foreach ($results as $result) {
                                                     ?>
                                                             <option value="<?php echo htmlentities($result->Name); ?>"><?php echo htmlentities($result->Name); ?></option>
-                                                    <?php 
+                                                    <?php
                                                         }
-                                                    } 
+                                                    }
                                                     ?>
                                                 </select>
                                             </div>
@@ -257,8 +262,9 @@ if (isset($_POST['add_employee'])) {
 
                                             <div class="form-group">
                                                 <label for="mobile" class="col-form-label">Mobile Number</label>
-                                                <input class="form-control" name="mobile" type="number" autocomplete="off" required id="mobile">
+                                                <input class="form-control" name="mobile" type="text" autocomplete="off" required id="mobile" maxlength="11" oninput="validateMobile(this)">
                                             </div>
+
 
                                             <div class="form-group">
                                                 <label for="salary" class="col-form-label">Salary</label>

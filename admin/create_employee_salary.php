@@ -15,7 +15,7 @@ if (isset($_POST['give_salary'])) {
     $empId = filter_input(INPUT_POST, 'empId', FILTER_SANITIZE_NUMBER_INT);
     $month = filter_input(INPUT_POST, 'month', FILTER_SANITIZE_SPECIAL_CHARS);
     $salary_in = filter_input(INPUT_POST, 'salary_in', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    
+
     // Fetch previous balance
     $sql = "SELECT balance FROM employee_salary WHERE empId = :empId ORDER BY payout_date DESC LIMIT 1";
     $query = $dbh->prepare($sql);
@@ -53,8 +53,9 @@ if (isset($_POST['give_salary'])) {
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
+
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>EMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,6 +76,7 @@ if (isset($_POST['give_salary'])) {
     <!-- modernizr css -->
     <script src="../assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
+
 <body>
     <!-- preloader area start -->
     <div id="preloader">
@@ -146,18 +148,6 @@ if (isset($_POST['give_salary'])) {
                                                 <label for="month" class="col-form-label">Month</label>
                                                 <select class="custom-select" name="month" required id="month">
                                                     <option value="">Choose..</option>
-                                                    <option value="January">January</option>
-                                                    <option value="February">February</option>
-                                                    <option value="March">March</option>
-                                                    <option value="April">April</option>
-                                                    <option value="May">May</option>
-                                                    <option value="June">June</option>
-                                                    <option value="July">July</option>
-                                                    <option value="August">August</option>
-                                                    <option value="September">September</option>
-                                                    <option value="October">October</option>
-                                                    <option value="November">November</option>
-                                                    <option value="December">December</option>
                                                 </select>
                                             </div>
 
@@ -179,40 +169,64 @@ if (isset($_POST['give_salary'])) {
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- footer area start-->
+            <?php include '../admin/layout/footer.php' ?>
+            <!-- footer area end-->
         </div>
-        <!-- footer area start-->
-        <?php include '../admin/layout/footer.php' ?>
-        <!-- footer area end-->
-    </div>
-    <script src="../assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/owl.carousel.min.js"></script>
-    <script src="../assets/js/metisMenu.min.js"></script>
-    <script src="../assets/js/jquery.slimscroll.min.js"></script>
-    <script src="../assets/js/jquery.slicknav.min.js"></script>
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-    <script src="https://www.amcharts.com/lib/3/export.min.js"></script>
-    <script src="https://www.amcharts.com/lib/3/light.js"></script>
-    <script src="../assets/js/amcharts.js"></script>
-    <script src="../assets/js/scripts.js"></script>
-    <script>
-        function fetchSalary() {
-            var empId = $('#empId').val();
-            if (empId) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'fetch_salary.php',
-                    data: {empId: empId},
-                    success: function (data) {
-                        var salaryData = JSON.parse(data);
-                        $('#salary_in').val(salaryData.salary_in);
-                        $('#balance').val(salaryData.balance);
-                    }
-                });
+        <script src="../assets/js/vendor/jquery-2.2.4.min.js"></script>
+        <script src="../assets/js/popper.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/owl.carousel.min.js"></script>
+        <script src="../assets/js/metisMenu.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script src="../assets/js/jquery.slicknav.min.js"></script>
+        <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+        <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+        <script src="https://www.amcharts.com/lib/3/export.min.js"></script>
+        <script src="https://www.amcharts.com/lib/3/light.js"></script>
+        <script src="../assets/js/amcharts.js"></script>
+        <script src="../assets/js/scripts.js"></script>
+        <script>
+            function fetchSalary() {
+                var empId = $('#empId').val();
+                if (empId) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'fetch_salary.php',
+                        data: {
+                            empId: empId
+                        },
+                        success: function(data) {
+                            var salaryData = JSON.parse(data);
+                            $('#salary_in').val(salaryData.salary_in);
+                            $('#balance').val(salaryData.balance);
+                        }
+                    });
+                }
             }
-        }
-    </script>
+        </script>
+        <script>
+            // Get the current month (0-11, where 0 is January)
+            const currentMonthIndex = new Date().getMonth();
+
+            // Array of month names
+            const months = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+
+            // Get the 'month' select element
+            const monthSelect = document.getElementById("month");
+
+            // Populate the select options starting from the current month
+            for (let i = 0; i <= currentMonthIndex; i++) {
+        const option = document.createElement("option");
+        option.value = months[i];
+        option.textContent = months[i];
+        monthSelect.appendChild(option);
+    }
+        </script>
 </body>
+
 </html>
